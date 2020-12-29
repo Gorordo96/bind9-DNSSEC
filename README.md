@@ -2,8 +2,8 @@
 
 Luego de clonar el repositorio debera decidir cual de los proyectos pondra en funcionamiento.
 
-* Proxy inverso con Traefik, Servicio web con Nginx y Servicio de resolucion de nombres DNS (** Proyecto con DNS ** )
-* Proxy inverso con Traefik, Servicio web con Nginx y Servicio de resolucion de nombres DNS implementando DNSSEC. (** Proyecto con DNSSEC ** )
+* Proxy inverso con Traefik, Servicio web con Nginx y Servicio de resolucion de nombres DNS (**Proyecto con DNS**)
+* Proxy inverso con Traefik, Servicio web con Nginx y Servicio de resolucion de nombres DNS implementando DNSSEC. (**Proyecto con DNSSEC** )
 
 ## Pasos
 
@@ -37,17 +37,20 @@ En esta instancia es necesario aclarar que si se eligio el proyecto con DNSSEC y
 12. Comprobar las resoluciones: dig @192.168.40.40 trabajoredes2020.com. NS +dnssec
 13. Comprobar las resoluciones: dig @192.168.40.40 trabajoredes2020.com. SOA +dnssec
 14. verificar con un anclaje de confianza.
-15. dentro del contenedor de bind9, se ha creado en la raiz un directorio Respaldokeys que contiene un archivo definido como key, con los datos de la KSK publica. Este archivo en su interior, debe tener el siguiente formato:
+15. dentro del contenedor de bind9, se ha creado en la raiz un directorio respaldoKeys que contiene un archivo definido como key, con los datos de la KSK publica. Este archivo en su interior, debe tener el siguiente formato:
 
 ~~~
 trusted-keys {
-movie.edu. 257 3 5 "AQPWA4BRyjB3eqYNy/oykeGcSXjl+HQK9CciAxJfMcS1vEuwz9c
+trabajoredes2020.com. 257 3 5 "AQPWA4BRyjB3eqYNy/oykeGcSXjl+HQK9CciAxJfMcS1vEuwz9c
 +QG7s EJnQuH5B9i5o/ja+DVitY3jpXNa12mEn";
 };
 ~~~
 * Definir la instancia trusted-keys {};
 * Dentro, especificar el dominio sobre el que se posee autoridad y la clave KSK publica de la siguiente manera: trabajoredes2020.com. 257 3 5 "< KSK_publica >";
 
-16. Guardamos el archivo y ejecutamos el siguiente comando: delv @192.168.40.40 -a /Respaldokeys/key +root=trabajoredes2020.com. paginaweb.trabajoredes2020.com.
+16. Guardamos el archivo y ejecutamos el siguiente comando: delv @192.168.40.40 -a /respaldoKeys/key +root=trabajoredes2020.com. paginaweb.trabajoredes2020.com.
 
 
+# Referencia de configuracion de bind con DNSSEC
+
+https://nsrc.org/activities/agendas/en/dnssec-3-days/dns/materials/labs/en/dnssec-bind-inline-signing-howto.html

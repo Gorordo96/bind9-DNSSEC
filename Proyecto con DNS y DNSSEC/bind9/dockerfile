@@ -1,0 +1,33 @@
+FROM ubuntu:18.04
+
+RUN apt-get update
+
+RUN apt-get install -y bind9 bind9utils bind9-doc dnsutils
+
+RUN apt-get install -y nano 
+
+RUN mkdir /etc/bind/zones
+
+RUN mkdir -p /etc/bind/keys/trabajoredes2020.com
+
+RUN mkdir respaldoKeys
+
+RUN dnssec-keygen -a RSASHA256 -b 2048 -K /etc/bind/keys/trabajoredes2020.com -fk trabajoredes2020.com
+
+RUN ls /etc/bind/keys/trabajoredes2020.com | grep ".key" | xargs -I '{}' cp /etc/bind/keys/trabajoredes2020.com/'{}' respaldoKeys/key
+
+RUN dnssec-keygen -a RSASHA256 -b 1024 -K /etc/bind/keys/trabajoredes2020.com trabajoredes2020.com
+
+COPY ./config/trabajoredes2020.com-db /etc/bind/zones/trabajoredes2020.com-db
+
+COPY ./config/192.168.40-db /etc/bind/zones/192.168.40-db
+
+WORKDIR /etc/bind
+
+RUN chown -R bind /etc/bind/keys
+
+RUN chown bind /etc/bind/zones
+
+CMD ["/bin/bash", "-c", "while :; do sleep 10; done"]
+
+

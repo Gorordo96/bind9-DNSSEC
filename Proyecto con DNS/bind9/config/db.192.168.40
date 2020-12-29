@@ -1,0 +1,16 @@
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	trabajoredes2020.com. magajesluc.trabajoredes2020.com. (
+			      2		; Serial - cuando se modifique este archivo debe incrementarse en 1
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	trabajoredes2020.com.
+40	IN	PTR	trabajoredes2020.com.			;192.168.40.40
+30	IN	PTR	paginaweb.trabajoredes2020.com.		;192.168.40.30
+30	IN	PTR	documentacion.trabajoredes2020.com.	;192.168.40.30
+

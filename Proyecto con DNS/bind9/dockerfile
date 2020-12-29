@@ -1,0 +1,17 @@
+FROM ubuntu:18.04
+
+RUN apt-get update
+
+RUN apt-get install -y bind9 bind9utils bind9-doc dnsutils
+
+RUN mkdir /etc/bind/zones
+
+COPY ./config/db.trabajoredes2020.com /etc/bind/zones/db.trabajoredes2020.com
+
+COPY ./config/db.192.168.40 /etc/bind/zones/db.192.168.40
+
+RUN service bind9 start
+
+CMD ["/bin/bash", "-c", "while :; do sleep 10; done"]
+
+

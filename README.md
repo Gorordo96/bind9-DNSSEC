@@ -1,3 +1,7 @@
+# Esquema basico
+
+![Esquema_Red](https://github.com/Gorordo96/bind9-DNSSEC/blob/main/img/Esquema%20de%20red.png?raw=true)
+
 # Aclaraciones de la implementacion
 
 Luego de clonar el repositorio debera decidir cual de los proyectos pondra en funcionamiento.

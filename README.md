@@ -7,7 +7,11 @@
 Luego de clonar el repositorio debera decidir cual de los proyectos pondra en funcionamiento.
 
 * Proxy inverso con Traefik, Servicio web con Nginx y Servicio de resolucion de nombres DNS (**Proyecto con DNS**)
-* Proxy inverso con Traefik, Servicio web con Nginx y Servicio de resolucion de nombres DNS implementando DNSSEC. (**Proyecto con DNSSEC** )
+* Proxy inverso con Traefik, Servicio web con Nginx y Servicio de resolucion de nombres DNS implementando DNSSEC. (**Proyecto con DNSSEC**) 
+
+Ambos proyectos estaran utilizando muchas configuraciones similares, por ende, es necesario realizar una limpieza de contenedores, redes y volumenes antes de migrar de la utilizacion de un proyecto a otro.
+
+Recomendacion: Si solo quiere verificar la utilizacion e implementacion de DNSSEC, se recomienda implementar directamente (**Proyecto con DNSSEC**).
 
 ## Pasos
 

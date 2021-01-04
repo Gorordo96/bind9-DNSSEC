@@ -11,6 +11,14 @@ Luego de clonar el repositorio debera decidir cual de los proyectos pondra en fu
 
 Ambos proyectos estaran utilizando muchas configuraciones similares, por ende, es necesario realizar una limpieza de contenedores, redes y volumenes antes de migrar de la utilizacion de un proyecto a otro.
 
+En el caso de no contar con ningun otro contenedor, volumen, red e imagen adicionales a las que se especifican en este proyecto puede ejecutar el siguiente comando para generar una limpieza 
+
+~~~
+docker system prune -a
+~~~
+
+Atencion: Si ya maneja docker y tiene implementado otros servicios, no se recomienda la ejecucion de dicho comando. Elimine muy a conciencia cada contenedor, red, volumen y demas.
+
 Recomendacion: Si solo quiere verificar la utilizacion e implementacion de DNSSEC, se recomienda implementar directamente (**Proyecto con DNSSEC**).
 
 ## Pasos

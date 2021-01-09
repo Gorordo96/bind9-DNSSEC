@@ -1,0 +1,31 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+// configuraciones de zona. Resolucion directa:
+
+zone "trabajoredes2020.com" {
+	type master;
+	file "/etc/bind/zones/trabajoredes2020.com-db";
+//Lineas nuevas, configuracion DNSSEC
+//=====================================================================
+	key-directory "/etc/bind/keys/trabajoredes2020.com";    
+	auto-dnssec maintain;
+	inline-signing yes;
+//=====================================================================
+
+
+};
+
+// configuraciones de zona. Resolucion inversa:
+
+zone "40.168.192.in-addr.arpa" {
+	type master;
+	file "/etc/bind/zones/192.168.40-db";
+};
+
+

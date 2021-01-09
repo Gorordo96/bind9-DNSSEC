@@ -1,0 +1,35 @@
+FROM python:3.7.9-buster
+
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir /Ataque
+
+WORKDIR /Ataque
+
+COPY requerimientos.txt /Ataque
+
+RUN apt-get update 
+
+RUN apt install net-tools
+
+RUN apt install -y dnsutils
+
+RUN apt install -y curl
+
+RUN apt-get install -y iputils-ping
+
+RUN apt-get install -y nano 
+
+RUN apt-get install -y iptables
+
+RUN apt install -y build-essential
+
+RUN apt install -y python3-pip git libnfnetlink-dev libnetfilter-queue-dev
+
+RUN pip3 install -r requerimientos.txt
+
+RUN pip3 install -U git+https://github.com/kti/python-netfilterqueue
+
+COPY ./script /Ataque
+
+CMD ["/bin/bash", "-c", "while :; do sleep 10; done"]

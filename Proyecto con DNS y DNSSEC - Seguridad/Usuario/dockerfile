@@ -1,0 +1,17 @@
+FROM ubuntu:18.04
+
+RUN apt-get update
+
+RUN apt install net-tools
+
+RUN apt install -y dnsutils
+
+RUN apt install -y curl
+
+RUN apt-get install -y iputils-ping
+
+RUN apt-get install -y nano 
+
+CMD ["/bin/bash", "-c", "while :; do sleep 10; done"]
+
+

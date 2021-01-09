@@ -1,0 +1,95 @@
+version: '3.2'
+
+services:
+
+ proxy_reverse:
+  image: traefik:v2.1
+  command: 
+  - --providers.docker
+  - --api.dashboard=true
+  - --api.insecure=true
+  - --providers.docker.exposedbydefault=false  
+  ports: 
+   - "80:80"
+   - "8080:8080"
+  volumes:
+   - /var/run/docker.sock:/var/run/docker.sock
+  networks:
+   red_aplicaciones:
+    ipv4_address: 192.168.40.30
+  container_name: Proxy
+
+ web_pages:
+  image: nginx:1.19
+  expose:
+  - "8102"
+  labels:
+  - "traefik.enable=true"
+  - "traefik.http.routers.web_pages.rule=Host(`paginaweb.trabajoredes2020.com`)"
+  - "traefik.http.services.web_pages.loadbalancer.server.port=8102"
+  volumes:
+   - ./nginx/contenido-paginaweb:/usr/share/nginx/html
+   - ./nginx/config-sitio/paginaweb.trabajoredes2020.com:/etc/nginx/conf.d/default.conf
+  networks:
+   red_aplicaciones:
+    ipv4_address: 192.168.40.10
+  container_name: Servidor_NGINX_WebPage
+
+ web_doc:
+  image: nginx:1.19
+  expose:
+   - "5531"
+  labels:
+  - "traefik.enable=true"
+  - "traefik.http.routers.web_doc.rule=Host(`documentacion.trabajoredes2020.com`)"
+  - "traefik.http.services.web_doc.loadbalancer.server.port=5531"
+  volumes:
+   - ./nginx/contenido-documentacion:/usr/share/nginx/html
+   - ./nginx/config-sitio/documentacion.trabajoredes2020.com:/etc/nginx/conf.d/default.conf
+  networks:
+   red_aplicaciones:
+    ipv4_address: 192.168.40.20
+  container_name: Servidor_NGINX_WebDoc
+
+ dns_bind9:
+  build: bind9 
+  expose:
+   - "53"
+  volumes:
+   - ./bind9/config/named.conf.local:/etc/bind/named.conf.local
+   - ./bind9/config/named.conf.options:/etc/bind/named.conf.options
+   - ./bind9/config/trabajoredes2020.com-db:/etc/bind/zones/trabajoredes2020.com-db
+   - ./bind9/config/192.168.40-db:/etc/bind/zones/192.168.40-db
+   - ./bind9/config/bind9:/etc/default/bind9
+  networks:
+   red_aplicaciones:
+    ipv4_address: 192.168.40.40
+  container_name: DNS
+
+ atacante:
+  build: Atacante
+  privileged: true
+  volumes:
+   - ./Atacante/script/ARP_Spoof.py:/Ataque/ARP_Spoof.py
+   - ./Atacante/script/DNS_Spoof.py:/Ataque/DNS_Spoof.py
+  networks:
+   red_aplicaciones:
+    ipv4_address: 192.168.40.3
+  container_name: Atacante
+
+ usuario:
+  build: Usuario
+  networks:
+   red_aplicaciones:
+    ipv4_address: 192.168.40.2
+  container_name: Usuario
+  
+
+
+networks:
+ red_aplicaciones:
+  driver: bridge
+  ipam:
+   config:
+    - subnet: 192.168.40.0/24
+

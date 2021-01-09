@@ -87,3 +87,10 @@ dig @192.168.40.40 documentacion.trabajoredes2020.com. +dnssec
 13. Verifique el resultado de la consulta tanto como la propia consola del atacante
 
 14. Frene el ataque como se especifica en las Notas y realice nuevamente las consultas
+
+# Referencia para Script del atacante
+
+* https://www.thepythoncode.com/code/make-dns-spoof-python
+
+* https://www.thepythoncode.com/article/building-arp-spoofer-using-scapy
+

@@ -5,6 +5,8 @@ simulando de alguna manera dos nuevos usuarios. Ambos tienen la posibilidad de r
 tambien tiene la posibilidad de realizar ataques Man in the middle. El objetivo es observar como con la implementacion de DNSSEC, el usuario final es capaz de darse cuenta de que sus paquetes
 estan siendo manipulados y modificados por un intermediario.
 
+![arquitectura_Red_Pruebas_Seguridad](https://github.com/Gorordo96/bind9-DNSSEC/blob/UsuariosyAtaque/img/Red_ataque.png?raw=true)
+
 # Pasos para realizar pruebas
 
 1. Dar de alta el proyecto mediante el siguiente comando: 

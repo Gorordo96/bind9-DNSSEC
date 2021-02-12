@@ -7,6 +7,10 @@ En la rama principal del proyecto, definida como "main" se encuentran los proyec
 
 En la rama definida como "UsuariosyAtaque" se plantea un proyecto con la misma topologia que en la rama "main" pero agregando un usuario capaz de realizar consultas DNS y un atacante que efectua ARP Spoofing y DNS Spoofing para modificar las respuestas a las consultas DNS del usuario. Se muestra como con DNSSEC se mitiga el ataque.
 
+# Documentacion completa
+
+Para acceder a toda la documentacion detallada acerca de este proyecto, leer el archivo PDF presente en el repositorio, definido como "Documentacion". En él, encontraran informacion conceptual acerca de los temas propuestos, informacion sobre DNSSEC, montaje del escenario, configuraciones y pruebas asociadas a la seguridad.
+
 # Esquema basico
 
 

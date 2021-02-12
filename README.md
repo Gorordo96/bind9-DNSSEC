@@ -1,4 +1,14 @@
+# ¿De que trata este repositorio?
+
+Propuesta de trabajo final de la asignatura Redes de Información de la carrera Ingeniería en Telecomunicaciones de la UNRC. El objetivo del trabajo es estudiar DNSSEC como una herramienta adicional para proporcionar seguridad sobre un servidor de nombres de dominio (DNS) autoritativo. Ademas de exponer conceptualmente como funciona esta implementacion, se realiza un practico para mostrar una de las tantas soluciones que brinda. 
+
+
+En la rama principal del proyecto, definida como "main" se encuentran los proyectos que implementan la arquitectura de red dockerizada, en un caso sin seguridad y en el otro mediante la implementacion de DNSSEC. En dicha rama tambien se muestran procedimientos y pasos necesarios para poner en funcionamiento el proyecto.
+
+En la rama definida como "UsuariosyAtaque" se plantea un proyecto con la misma topologia que en la rama "main" pero agregando un usuario capaz de realizar consultas DNS y un atacante que efectua ARP Spoofing y DNS Spoofing para modificar las respuestas a las consultas DNS del usuario. Se muestra como con DNSSEC se mitiga el ataque.
+
 # Esquema basico
+
 
 ![Esquema_Red](https://github.com/Gorordo96/bind9-DNSSEC/blob/main/img/Esquema%20de%20red.png?raw=true)
 
